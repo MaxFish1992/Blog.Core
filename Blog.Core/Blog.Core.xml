@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog.Core</name>
+    </assembly>
+    <members>
+        <member name="M:Blog.Core.Controllers.ValuesController.Get(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id">id</param>
+            <param name="name">名称</param>
+            <param name="age">年龄</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Core.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Blog.Core.Startup.Configuration">
+            <summary>
+            Configuration属性
+            </summary>
+        </member>
+    </members>
+</doc>
