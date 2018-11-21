@@ -6,7 +6,7 @@
     <members>
         <member name="T:Blog.Core.Model.Love">
             <summary>
-            这就是爱
+            这就是爱，这是一个测试model
             </summary>
         </member>
         <member name="P:Blog.Core.Model.Love.Id">
@@ -23,6 +23,29 @@
             <summary>
             年龄
             </summary>
+        </member>
+        <member name="T:Blog.Core.UtilConvert">
+            <summary>
+            功能描述    ：UtilConvert  
+            创 建 者    ：huangwei
+            创建日期    ：2018/11/21 18:02:10 
+            最后修改者  ：Administrator
+            最后修改日期：2018/11/21 18:02:10 
+            </summary>
+        </member>
+        <member name="M:Blog.Core.UtilConvert.ObjToInt(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Core.UtilConvert.ObjToString(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
