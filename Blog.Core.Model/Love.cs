@@ -3,7 +3,7 @@
 namespace Blog.Core.Model
 {
     /// <summary>
-    /// 这就是爱
+    /// 这就是爱，这是一个测试model
     /// </summary>
     public class Love
     {
