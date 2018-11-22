@@ -59,26 +59,18 @@
             </summary>
             <param name="next"></param>
         </member>
+        <member name="M:Blog.Core.Controllers.BlogController.Get(System.Int32,System.Int32)">
+            <summary>
+            Sum接口
+            </summary>
+            <param name="i">参数i</param>
+            <param name="j">参数j</param>
+            <returns></returns>
+        </member>
         <member name="M:Blog.Core.Controllers.LoginController.GetJWTStr(System.Int64,System.String)">
             <summary>
             获取JWT，并存入缓存
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Blog.Core.Controllers.ValuesController.Get(System.String,System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="id">id</param>
-            <param name="name">名称</param>
-            <param name="age">年龄</param>
-            <returns></returns>
-        </member>
-        <member name="M:Blog.Core.Controllers.ValuesController.Get(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="P:Blog.Core.Startup.Configuration">

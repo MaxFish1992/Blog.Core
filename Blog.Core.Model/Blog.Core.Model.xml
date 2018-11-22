@@ -24,6 +24,39 @@
             年龄
             </summary>
         </member>
+        <member name="T:Blog.Core.Model.MessageModel`1">
+            <summary>
+            功能描述    ：通用返回信息类  
+            创 建 者    ：huangwei
+            创建日期    ：2018/11/22 9:51:58 
+            最后修改者  ：Administrator
+            最后修改日期：2018/11/22 9:51:58 
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.MessageModel`1.Success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.MessageModel`1.Msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.MessageModel`1.Data">
+            <summary>
+            返回数据集合
+            </summary>
+        </member>
+        <member name="T:Blog.Core.Model.TableModel">
+            <summary>
+            功能描述    ：TableModel  
+            创 建 者    ：huangwei
+            创建日期    ：2018/11/22 9:52:06 
+            最后修改者  ：Administrator
+            最后修改日期：2018/11/22 9:52:06 
+            </summary>
+        </member>
         <member name="T:Blog.Core.UtilConvert">
             <summary>
             功能描述    ：UtilConvert  
