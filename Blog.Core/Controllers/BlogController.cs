@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Core.IServices;
+using Blog.Core.Model.Models;
 using Blog.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +13,7 @@ namespace Blog.Core.Controllers
 {
     [Produces("application/json")]
     [Route("api/Blog")]
-    [Authorize(Policy = "Admin")]
+    //[Authorize(Policy = "Admin")]
     public class BlogController : Controller
     {
         // GET: api/Blog
@@ -30,10 +31,17 @@ namespace Blog.Core.Controllers
         }
 
         // GET: api/Blog/5
+        /// <summary>
+        /// 根据id获取信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public List<Advertisement> Get(int id)
         {
-            return "value";
+            IAdvertisementServices advertisementServices = new AdvertisementServices();
+
+            return advertisementServices.Query(d => d.Id == id);
         }
 
         // POST: api/Blog

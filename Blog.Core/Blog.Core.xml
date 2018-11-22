@@ -67,6 +67,13 @@
             <param name="j">参数j</param>
             <returns></returns>
         </member>
+        <member name="M:Blog.Core.Controllers.BlogController.Get(System.Int32)">
+            <summary>
+            根据id获取信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Blog.Core.Controllers.LoginController.GetJWTStr(System.Int64,System.String)">
             <summary>
             获取JWT，并存入缓存
