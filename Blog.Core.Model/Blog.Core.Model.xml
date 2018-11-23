@@ -87,6 +87,65 @@
             备注
             </summary>
         </member>
+        <member name="T:Blog.Core.Model.Models.BlogArticle">
+            <summary>
+            功能描述    ：博客文章  
+            创 建 者    ：huangwei
+            创建日期    ：2018/11/23 16:12:00 
+            最后修改者  ：Administrator
+            最后修改日期：2018/11/23 16:12:00 
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bsubmitter">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.btitle">
+            <summary>
+            博客标题
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bcategory">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bcontent">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.btraffic">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bcommentNum">
+            <summary>
+            评论数量
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bUpdateTime">
+            <summary> 
+            修改时间
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.Models.BlogArticle.bRemark">
+            <summary>
+            备注
+            </summary>
+        </member>
         <member name="T:Blog.Core.Model.TableModel">
             <summary>
             功能描述    ：TableModel  

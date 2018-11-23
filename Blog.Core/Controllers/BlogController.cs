@@ -12,21 +12,11 @@ namespace Blog.Core.Controllers
     public class BlogController : Controller
     {
         IAdvertisementServices _advertisementServices;
-        public BlogController(IAdvertisementServices advertisementServices)
+        IBlogArticleServices _blogArticleServices;
+        public BlogController(IAdvertisementServices advertisementServices, IBlogArticleServices blogArticleServices)
         {
             _advertisementServices = advertisementServices;
-        }
-        // GET: api/Blog
-        /// <summary>
-        /// Sum接口
-        /// </summary>
-        /// <param name="i">参数i</param>
-        /// <param name="j">参数j</param>
-        /// <returns></returns>
-        [HttpGet]
-        public int Get(int i, int j)
-        {
-            return 1;
+            _blogArticleServices = blogArticleServices;
         }
 
         // GET: api/Blog/5
@@ -40,7 +30,16 @@ namespace Blog.Core.Controllers
         {
             return await _advertisementServices.Query(d => d.Id == id);
         }
-
+        /// <summary>
+        /// 获取博客列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetBlogs")]
+        public async Task<List<BlogArticle>> GetBlogs()
+        {
+            return await _blogArticleServices.GetBlogs();
+        }
         // POST: api/Blog
         [HttpPost]
         public void Post([FromBody] string value)

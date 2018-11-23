@@ -4,7 +4,9 @@ using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Autofac.Extras.DynamicProxy;
 using AutoMapper;
+using Blog.Core.AOP;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Memory;
@@ -48,7 +50,7 @@ namespace Blog.Core
                     Contact = new Swashbuckle.AspNetCore.Swagger.Contact { Name = "Blog.Core", Email = "Blog.Core@xxx.com", Url = "https://www.jianshu.com/u/94102b59cc2a" }
                 });
                 #region 读取xml信息
-                
+
                 var xmlPath = Path.Combine(basePath, "Blog.Core.xml");//这个就是刚刚配置的xml文件名
                 var xmlModelPath = Path.Combine(basePath, "Blog.Core.Model.xml");//这个就是Model层的xml文件名
                 c.IncludeXmlComments(xmlPath, true);//默认的第二个参数是false，这个是controller的注释，记得修改
@@ -101,11 +103,15 @@ namespace Blog.Core
 
             //注册要通过反射创建的组件
             //builder.RegisterType<AdvertisementServices>().As<IAdvertisementServices>();
-            //builder.RegisterType<AdvertisementRepository>().As<IAdvertisementRepository>();
+            builder.RegisterType<BlogLogAOP>();//可以直接替换其他拦截器！一定要把拦截器进行注册
 
             var servicesDllFile = Path.Combine(basePath, "Blog.Core.Services.dll");//获取注入项目绝对路径
             var assemblysServices = Assembly.LoadFile(servicesDllFile);
-            builder.RegisterAssemblyTypes(assemblysServices).AsImplementedInterfaces();//指定已扫描程序集中的类型注册为提供所有其实现的接口。
+            builder.RegisterAssemblyTypes(assemblysServices)
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope()
+                .EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy;
+                .InterceptedBy(typeof(BlogLogAOP));//可以直接替换拦截器
 
             var repositoryDllFile = Path.Combine(basePath, "Blog.Core.Repository.dll");//获取注入项目绝对路径
             var assemblysRepository = Assembly.LoadFile(repositoryDllFile);
