@@ -14,7 +14,7 @@ namespace Blog.Core.Repository.sugar
     /// </summary>
     public class BaseDBConfig
     {
-        public static string ConnectionString { get; set; }
+        public static string ConnectionString { get; set; } = "Data Source=.;Initial Catalog=MiddleData;User ID=sa;Password=admin@123;";
 
         //正常格式是
 

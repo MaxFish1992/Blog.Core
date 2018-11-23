@@ -1,10 +1,8 @@
 ﻿using Blog.Core.IRepository.Base;
 using Blog.Core.IServices.Base;
-using Blog.Core.Repository.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Blog.Core.Services.Base
@@ -18,8 +16,8 @@ namespace Blog.Core.Services.Base
     /// </summary>
     public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new()
     {
-        public IBaseRepository<TEntity> baseDal = new BaseRepository<TEntity>();
-        //public IBaseRepository<TEntity> baseDal;//通过在子类的构造函数中注入，这里是基类，不用构造函数
+        //public IBaseRepository<TEntity> baseDal = new BaseRepository<TEntity>();
+        public IBaseRepository<TEntity> baseDal;//通过在子类的构造函数中注入，这里是基类，不用构造函数
 
         public async Task<TEntity> QueryByID(object objId)
         {

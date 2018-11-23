@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
-using Blog.Core.AuthHelper.OverWrite;
-using Blog.Core.Repository.sugar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Blog.Core
@@ -32,15 +26,16 @@ namespace Blog.Core
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //数据库配置
-            BaseDBConfig.ConnectionString = Configuration.GetSection("AppSettings:SqlServerConnection").Value;
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //BaseDBConfig.ConnectionString = Configuration.GetSection("AppSettings:SqlServerConnection").Value;
+
             services.AddMemoryCache();
             services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
 
+            var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
             #region Swagger
             services.AddSwaggerGen(c =>
             {
@@ -53,7 +48,7 @@ namespace Blog.Core
                     Contact = new Swashbuckle.AspNetCore.Swagger.Contact { Name = "Blog.Core", Email = "Blog.Core@xxx.com", Url = "https://www.jianshu.com/u/94102b59cc2a" }
                 });
                 #region 读取xml信息
-                var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+                
                 var xmlPath = Path.Combine(basePath, "Blog.Core.xml");//这个就是刚刚配置的xml文件名
                 var xmlModelPath = Path.Combine(basePath, "Blog.Core.Model.xml");//这个就是Model层的xml文件名
                 c.IncludeXmlComments(xmlPath, true);//默认的第二个参数是false，这个是controller的注释，记得修改
@@ -101,9 +96,29 @@ namespace Blog.Core
             #endregion
 
             #region AutoFac
+            //实例化Autofac容器
+            var builder = new ContainerBuilder();
 
+            //注册要通过反射创建的组件
+            //builder.RegisterType<AdvertisementServices>().As<IAdvertisementServices>();
+            //builder.RegisterType<AdvertisementRepository>().As<IAdvertisementRepository>();
+
+            var servicesDllFile = Path.Combine(basePath, "Blog.Core.Services.dll");//获取注入项目绝对路径
+            var assemblysServices = Assembly.LoadFile(servicesDllFile);
+            builder.RegisterAssemblyTypes(assemblysServices).AsImplementedInterfaces();//指定已扫描程序集中的类型注册为提供所有其实现的接口。
+
+            var repositoryDllFile = Path.Combine(basePath, "Blog.Core.Repository.dll");//获取注入项目绝对路径
+            var assemblysRepository = Assembly.LoadFile(repositoryDllFile);
+            builder.RegisterAssemblyTypes(assemblysRepository).AsImplementedInterfaces();
+
+
+            //将services填充Autofac容器生成器
+            builder.Populate(services);
+            //使用已进行的组件登记创建新容器
+            var ApplicationContainer = builder.Build();
             #endregion
-
+            //第三方IOC接管
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -128,8 +143,9 @@ namespace Blog.Core
             });
             #endregion
 
-            app.UseMiddleware<JwtTokenAuth>();
-            
+            //app.UseMiddleware<JwtTokenAuth>();//注意此授权方法已经放弃，请使用下边的官方验证方法。但是如果你还想传User的全局变量，还是可以继续使用中间件
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }
