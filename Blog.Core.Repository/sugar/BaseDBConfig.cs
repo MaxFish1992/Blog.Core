@@ -14,7 +14,7 @@ namespace Blog.Core.Repository.sugar
     /// </summary>
     public class BaseDBConfig
     {
-        public static string ConnectionString = File.ReadAllText(@"F:\Code\.net core\Blog.Core\test.txt").Trim();
+        public static string ConnectionString { get; set; }
 
         //正常格式是
 

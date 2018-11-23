@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Blog.Core.AuthHelper.OverWrite;
+using Blog.Core.Repository.sugar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,8 @@ namespace Blog.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //数据库配置
+            BaseDBConfig.ConnectionString = Configuration.GetSection("AppSettings:SqlServerConnection").Value;
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMemoryCache();
             services.AddMvc();
@@ -116,11 +119,6 @@ namespace Blog.Core
                 app.UseHsts();
             }
 
-            //这个就是一个简单的中间件写法，请求由这里返回Hello World!
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
             #region Swagger
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -129,7 +127,9 @@ namespace Blog.Core
                 //c.RoutePrefix = "";//路径配置，设置为空，表示直接访问该文件
             });
             #endregion
+
             app.UseMiddleware<JwtTokenAuth>();
+            
             app.UseHttpsRedirection();
             app.UseMvc();
         }

@@ -26,8 +26,7 @@ namespace Blog.Core.Controllers
         [HttpGet]
         public int Get(int i, int j)
         {
-            IAdvertisementServices advertisementServices = new AdvertisementServices();
-            return advertisementServices.Sum(i, j);
+            return 1;
         }
 
         // GET: api/Blog/5
@@ -37,11 +36,10 @@ namespace Blog.Core.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "Get")]
-        public List<Advertisement> Get(int id)
+        public async Task<List<Advertisement>> Get(int id)
         {
             IAdvertisementServices advertisementServices = new AdvertisementServices();
-
-            return advertisementServices.Query(d => d.Id == id);
+            return await advertisementServices.Query(d => d.Id == id);
         }
 
         // POST: api/Blog
