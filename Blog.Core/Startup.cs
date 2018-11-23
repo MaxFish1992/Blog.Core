@@ -33,7 +33,8 @@ namespace Blog.Core
             //数据库配置
             //BaseDBConfig.ConnectionString = Configuration.GetSection("AppSettings:SqlServerConnection").Value;
 
-            services.AddMemoryCache();
+            //services.AddMemoryCache();
+            services.AddScoped<ICaching, MemoryCaching>();//缓存注入！！！
             services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
 
@@ -103,7 +104,7 @@ namespace Blog.Core
 
             //注册要通过反射创建的组件
             //builder.RegisterType<AdvertisementServices>().As<IAdvertisementServices>();
-            builder.RegisterType<BlogLogAOP>();//可以直接替换其他拦截器！一定要把拦截器进行注册
+            builder.RegisterType<BlogCacheAOP>();//可以直接替换其他拦截器！一定要把拦截器进行注册
 
             var servicesDllFile = Path.Combine(basePath, "Blog.Core.Services.dll");//获取注入项目绝对路径
             var assemblysServices = Assembly.LoadFile(servicesDllFile);
@@ -111,7 +112,7 @@ namespace Blog.Core
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope()
                 .EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy;
-                .InterceptedBy(typeof(BlogLogAOP));//可以直接替换拦截器
+                .InterceptedBy(typeof(BlogCacheAOP));//可以直接替换拦截器
 
             var repositoryDllFile = Path.Combine(basePath, "Blog.Core.Repository.dll");//获取注入项目绝对路径
             var assemblysRepository = Assembly.LoadFile(repositoryDllFile);

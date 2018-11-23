@@ -4,11 +4,43 @@
         <name>Blog.Core</name>
     </assembly>
     <members>
+        <member name="M:Blog.Core.AOP.BlogCacheAOP.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            实现接口唯一方法，拦截器入口
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="M:Blog.Core.AOP.BlogCacheAOP.CustomCacheKey(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            自定义缓存键key
+            </summary>
+            <param name="invocation"></param>
+            <returns></returns>
+        </member>
         <member name="M:Blog.Core.AOP.BlogLogAOP.Intercept(Castle.DynamicProxy.IInvocation)">
             <summary>
             实现接口唯一方法
             </summary>
             <param name="invocation">包含被拦截方法的信息</param>
+        </member>
+        <member name="T:Blog.Core.AOP.ICaching">
+            <summary>
+            简单的缓存接口，只有查询和添加，以后会进行扩展
+            </summary>
+        </member>
+        <member name="M:Blog.Core.AOP.ICaching.Get(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="cacheKey">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Core.AOP.ICaching.Set(System.String,System.Object)">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="cacheKey">key</param>
+            <param name="cacheValue">value</param>
         </member>
         <member name="T:Blog.Core.AuthHelper.OverWrite.JwtHelper">
             <summary>
