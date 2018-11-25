@@ -55,19 +55,7 @@ namespace Blog.Core.Controllers
         [Route("GetBlogs")]
         public async Task<List<BlogArticle>> GetBlogs()
         {
-            List<BlogArticle> blogArticleList = new List<BlogArticle>();
-
-            if (_redisCacheManager.Get<object>("Redis.Blog") != null)
-            {
-                blogArticleList = _redisCacheManager.Get<List<BlogArticle>>("Redis.Blog");
-            }
-            else
-            {
-                blogArticleList = await _blogArticleServices.Query(d => d.bID > 5);
-                _redisCacheManager.Set("Redis.Blog", blogArticleList, TimeSpan.FromHours(2));//缓存2小时
-            }
-
-            return blogArticleList;
+            return await _blogArticleServices.GetBlogs();
         }
         // POST: api/Blog
         [HttpPost]
