@@ -1,4 +1,5 @@
-﻿using Blog.Core.Common.Attribute;
+﻿using AutoMapper;
+using Blog.Core.Common.Attribute;
 using Blog.Core.IRepository;
 using Blog.Core.IServices;
 using Blog.Core.Model.Models;
@@ -22,10 +23,12 @@ namespace Blog.Core.Services
     public class BlogArticleServices : BaseServices<BlogArticle>, IBlogArticleServices
     {
         IBlogArticleRepository dal;
-        public BlogArticleServices(IBlogArticleRepository dal)
+        IMapper _mapper;
+        public BlogArticleServices(IBlogArticleRepository dal,IMapper mapper)
         {
             this.dal = dal;
             base.baseDal = dal;
+            this._mapper = mapper;
         }
         /// <summary>
         /// 获取视图博客详情信息
@@ -72,18 +75,7 @@ namespace Blog.Core.Services
             blogArticle.btraffic += 1;
             await dal.Update(blogArticle, new List<string> { "btraffic" });
 
-            BlogViewModels models = new BlogViewModels()
-            {
-                bsubmitter = blogArticle.bsubmitter,
-                btitle = blogArticle.btitle,
-                bcategory = blogArticle.bcategory,
-                bcontent = blogArticle.bcontent,
-                btraffic = blogArticle.btraffic,
-                bcommentNum = blogArticle.bcommentNum,
-                bUpdateTime = blogArticle.bUpdateTime,
-                bCreateTime = blogArticle.bCreateTime,
-                bRemark = blogArticle.bRemark,
-            };
+            BlogViewModels models = _mapper.Map<BlogViewModels>(blogArticle);
 
             if (nextblog != null)
             {

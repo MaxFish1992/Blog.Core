@@ -36,11 +36,15 @@ namespace Blog.Core
 
             //services.AddMemoryCache();
             services.AddScoped<ICaching, MemoryCaching>();//缓存注入！！！
-            services.AddScoped<IRedisCacheManager, RedisCacheManager>();//Redis缓存注入！！！
             services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
 
             var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+
+            #region AutoMapper
+            services.AddAutoMapper(typeof(Startup));//这是AutoMapper的2.0新特性
+            #endregion
+
             #region Swagger
             services.AddSwaggerGen(c =>
             {
@@ -120,7 +124,7 @@ namespace Blog.Core
             #endregion
 
             #region Redis
-
+            services.AddScoped<IRedisCacheManager, RedisCacheManager>();//Redis缓存注入！！！
             #endregion
 
             #region AutoFac

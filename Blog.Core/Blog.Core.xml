@@ -97,6 +97,11 @@
             </summary>
             <param name="next"></param>
         </member>
+        <member name="M:Blog.Core.AutoMapper.CustomProfile.#ctor">
+            <summary>
+            配置构造函数，用来创建关系映射
+            </summary>
+        </member>
         <member name="M:Blog.Core.Controllers.BlogController.Get(System.Int32)">
             <summary>
             根据id获取信息

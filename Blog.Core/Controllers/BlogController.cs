@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Blog.Core.Common.Helper;
 using Blog.Core.Common.Redis;
 using Blog.Core.IServices;
 using Blog.Core.Model.Models;
@@ -32,22 +33,29 @@ namespace Blog.Core.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}", Name = "Get")]
-        public async Task<List<BlogArticle>> Get(int id)
+        public async Task<object> Get(int id)
         {
-            List<BlogArticle> blogArticleList = new List<BlogArticle>();
-
-            if (_redisCacheManager.Get<object>("Redis.Blog1") != null)
-            {
-                blogArticleList = _redisCacheManager.Get<List<BlogArticle>>("Redis.Blog1");
-            }
-            else
-            {
-                blogArticleList = await _blogArticleServices.Query(d => d.bID == id);
-                _redisCacheManager.Set("Redis.Blog1", blogArticleList, TimeSpan.FromHours(2));//缓存2小时
-            }
-
-            return blogArticleList;
+            var model = await _blogArticleServices.getBlogDetails(id);//调用该方法
+            var data = new { success = true, data = model };
+            return data;
         }
+        //[HttpGet("{id}", Name = "Get")]
+        //public async Task<List<BlogArticle>> Get(int id)
+        //{
+        //    List<BlogArticle> blogArticleList = new List<BlogArticle>();
+
+        //    if (_redisCacheManager.Get<object>("Redis.Blog1") != null)
+        //    {
+        //        blogArticleList = _redisCacheManager.Get<List<BlogArticle>>("Redis.Blog1");
+        //    }
+        //    else
+        //    {
+        //        blogArticleList = await _blogArticleServices.Query(d => d.bID == id);
+        //        _redisCacheManager.Set("Redis.Blog1", blogArticleList, TimeSpan.FromHours(2));//缓存2小时
+        //    }
+
+        //    return blogArticleList;
+        //}
         /// <summary>
         /// 获取博客列表
         /// </summary>
