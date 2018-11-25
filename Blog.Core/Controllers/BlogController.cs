@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Blog.Core.Common.Helper;
 using Blog.Core.Common.Redis;
 using Blog.Core.IServices;
 using Blog.Core.Model.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Core.Controllers
 {
     [Produces("application/json")]
     [Route("api/Blog")]
+    [EnableCors("LimitRequests")]//允许跨域请求
     //[Authorize(Policy = "Admin")]
     public class BlogController : Controller
     {
