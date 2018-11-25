@@ -7,6 +7,7 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using AutoMapper;
 using Blog.Core.AOP;
+using Blog.Core.Common.Redis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Memory;
@@ -35,6 +36,7 @@ namespace Blog.Core
 
             //services.AddMemoryCache();
             services.AddScoped<ICaching, MemoryCaching>();//缓存注入！！！
+            services.AddScoped<IRedisCacheManager, RedisCacheManager>();//Redis缓存注入！！！
             services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
 
