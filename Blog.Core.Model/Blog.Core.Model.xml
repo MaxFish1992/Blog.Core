@@ -155,6 +155,82 @@
             最后修改日期：2018/11/22 9:52:06 
             </summary>
         </member>
+        <!-- 对于成员“T:Blog.Core.Model.ViewModels.BlogViewModels”忽略有格式错误的 XML 注释 -->
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bsubmitter">
+            <summary>创建人
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.btitle">
+            <summary>博客标题
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.digest">
+            <summary>摘要
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.previous">
+            <summary>
+            上一篇
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.previousID">
+            <summary>
+            上一篇id
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.next">
+            <summary>
+            下一篇
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.nextID">
+            <summary>
+            下一篇id
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bcategory">
+            <summary>类别
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bcontent">
+            <summary>内容
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.btraffic">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bcommentNum">
+            <summary>
+            评论数量
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bUpdateTime">
+            <summary> 修改时间
+            
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Blog.Core.Model.ViewModels.BlogViewModels.bRemark">
+            <summary>备注
+            
+            </summary>
+        </member>
         <member name="T:Blog.Core.UtilConvert">
             <summary>
             功能描述    ：UtilConvert  
