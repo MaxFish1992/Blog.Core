@@ -1,4 +1,5 @@
-﻿using Blog.Core.IRepository;
+﻿using Blog.Core.Common.Attribute;
+using Blog.Core.IRepository;
 using Blog.Core.IServices;
 using Blog.Core.Model.Models;
 using Blog.Core.Services.Base;
@@ -24,6 +25,11 @@ namespace Blog.Core.Services
             this.dal = dal;
             base.baseDal = dal;
         }
+        /// <summary>
+        /// 获取博客列表
+        /// </summary>
+        /// <returns></returns>
+        [Caching(AbsoluteExpiration =10)]//增加特性
         public async Task<List<BlogArticle>> GetBlogs()
         {
             var bloglist = await dal.Query(a => a.bID > 0, a => a.bID);

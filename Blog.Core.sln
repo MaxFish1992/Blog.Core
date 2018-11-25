@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core", "Blog.Core\Blog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core.Model", "Blog.Core.Model\Blog.Core.Model.csproj", "{36FA3F35-7AFD-4C76-834B-CD255E132056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core.IRepository", "Blog.Core.IRepository\Blog.Core.IRepository.csproj", "{090D21B2-A823-4FDC-9E82-897752717398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core.IRepository", "Blog.Core.IRepository\Blog.Core.IRepository.csproj", "{090D21B2-A823-4FDC-9E82-897752717398}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core.Repository", "Blog.Core.Repository\Blog.Core.Repository.csproj", "{C1DE399E-A75B-4ED7-990D-137BB9784DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core.Repository", "Blog.Core.Repository\Blog.Core.Repository.csproj", "{C1DE399E-A75B-4ED7-990D-137BB9784DBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core.Services", "Blog.Core.Services\Blog.Core.Services.csproj", "{06A0AEAF-4026-4191-90C7-7B1A92AF8694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core.Services", "Blog.Core.Services\Blog.Core.Services.csproj", "{06A0AEAF-4026-4191-90C7-7B1A92AF8694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core.IServices", "Blog.Core.IServices\Blog.Core.IServices.csproj", "{DAE72373-2D7C-4451-95EB-47127A92AA77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Core.IServices", "Blog.Core.IServices\Blog.Core.IServices.csproj", "{DAE72373-2D7C-4451-95EB-47127A92AA77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core.Common", "Blog.Core.Common\Blog.Core.Common.csproj", "{6AED9B7C-59FA-4441-90BE-1820171FE858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DAE72373-2D7C-4451-95EB-47127A92AA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAE72373-2D7C-4451-95EB-47127A92AA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAE72373-2D7C-4451-95EB-47127A92AA77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AED9B7C-59FA-4441-90BE-1820171FE858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AED9B7C-59FA-4441-90BE-1820171FE858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AED9B7C-59FA-4441-90BE-1820171FE858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AED9B7C-59FA-4441-90BE-1820171FE858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

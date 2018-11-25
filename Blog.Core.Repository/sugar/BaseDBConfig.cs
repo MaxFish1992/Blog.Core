@@ -1,4 +1,6 @@
-﻿namespace Blog.Core.Repository.sugar
+﻿using Blog.Core.Common.Helper;
+
+namespace Blog.Core.Repository.sugar
 {
     /// <summary>
     /// 功能描述    ：BaseDBConfig  
@@ -9,7 +11,7 @@
     /// </summary>
     public class BaseDBConfig
     {
-        public static string ConnectionString { get; set; } = "Data Source=.;Initial Catalog=MiddleData;User ID=sa;Password=admin@123;";
+        public static string ConnectionString { get; set; } = Appsettings.App(new string[] { "Appsettings", "SqlServer", "SqlServerConnection" });
 
         //正常格式是
 

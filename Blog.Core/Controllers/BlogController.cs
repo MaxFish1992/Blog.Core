@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Blog.Core.Common.Helper;
 using Blog.Core.IServices;
 using Blog.Core.Model.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,7 @@ namespace Blog.Core.Controllers
         [Route("GetBlogs")]
         public async Task<List<BlogArticle>> GetBlogs()
         {
+            //var connect = Appsettings.App(new string[] { "Appsettings", "RedisCaching", "ConnectionString" });
             return await _blogArticleServices.GetBlogs();
         }
         // POST: api/Blog
